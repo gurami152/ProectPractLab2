@@ -41,8 +41,18 @@ public class SecondFrame extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jButton1.setText("Вихід");
+        jButton1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                jButton1ComponentResized(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -52,8 +62,30 @@ public class SecondFrame extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Кулькулятор"));
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextField1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jTextField1CaretUpdate(evt);
+            }
+        });
+        jTextField1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jTextField1InputMethodTextChanged(evt);
+            }
+        });
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextField2.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jTextField2CaretUpdate(evt);
+            }
+        });
+        jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField2FocusLost(evt);
+            }
+        });
 
         jTextField3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
@@ -229,6 +261,36 @@ public class SecondFrame extends javax.swing.JFrame {
             }
             
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       jTextField2.setVisible(false);
+       jTextField3.setVisible(false);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jTextField1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField1InputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1InputMethodTextChanged
+
+    private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate
+       jTextField2.setVisible(true);
+    }//GEN-LAST:event_jTextField1CaretUpdate
+
+    private void jTextField2CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField2CaretUpdate
+        jTextField3 .setVisible(true);
+    }//GEN-LAST:event_jTextField2CaretUpdate
+
+    private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
+        jButton1.setSize(60, 50);
+    }//GEN-LAST:event_jTextField2FocusLost
+
+    private void jButton1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jButton1ComponentResized
+        // TODO add your handling code here:
+        jButton2.setSize(jButton1.getSize());
+        jButton3.setSize(jButton1.getSize());
+        jButton4.setSize(jButton1.getSize());
+        jButton5.setSize(jButton1.getSize());
+        jButton6.setSize(jButton1.getSize());
+    }//GEN-LAST:event_jButton1ComponentResized
 
     /**
      * @param args the command line arguments
